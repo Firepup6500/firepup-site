@@ -8,23 +8,25 @@
     <!-- <script async src="https://api.countapi.xyz/hit/firepup650.repl.co/visits"></script> -->
     <!-- <script async src="https://api.countapi.xyz/hit/firepup650.repl.co/YCSP"></script> -->
   </head>
-  <body class=center>
-    <h3 class=rainbow>Youngchief's Spotify:</h3>
-    <% if (typeof err == 'undefined') { %>
-      <p class=rainbow>Status: OK</p>
-      <p class=rainbow>Currently listening: <%= playing %></p>
-      <p class=rainbow>Progress in track (in miliseconds): <%= progress %>/<%= len %></p>
-      <p class=rainbow>Unique song ID (isrc): <%= isrc %></p>
-      <p class=rainbow>Song Name: <%= name %></p>
-      <p class=rainbow>Artist(s): <%= cont %></p>
-    <% } else { %>
-      <p class=rainbow>Status: ERROR</p>
-      <p class=rainbow>Error Origin: <%= end %></p>
-      <p class=rainbow>Error: <%= err %></p>
-    <% } %>
-    <p class=rainbow>Raw data: <%= raw %></p>
-    <p class=rainbow>Cover Art:</p>
-    <img src="<%= cal %>" class="no-bounce">
+  <body>
+    <span class=center>
+      <h3 class=rainbow>Youngchief's Spotify:</h3>
+      <% if (typeof err == 'undefined') { %>
+        <p class=rainbow>Status: OK</p>
+        <p class=rainbow>Currently listening: <%= playing %></p>
+        <p class=rainbow>Progress in track (in miliseconds): <%= progress %>/<%= len %></p>
+        <p class=rainbow>Unique song ID (isrc): <%= isrc %></p>
+        <p class=rainbow>Song Name: <%= name %></p>
+        <p class=rainbow>Artist(s): <%= cont %></p>
+      <% } else { %>
+        <p class=rainbow>Status: ERROR</p>
+        <p class=rainbow>Error Origin: <%= end %></p>
+        <p class=rainbow>Error: <%= err %></p>
+      <% } %>
+      <p class=rainbow>Raw data: <%= raw %></p>
+      <p class=rainbow>Cover Art:</p>
+      <img src="<%= cal %>" class="no-bounce">
+    </span>
     <script src="/footer.js"></script>
   </body>
 </html>
