@@ -4,7 +4,5 @@ ${location.pathname !== "/"? '<br/><a href="/" class="cyan">Return to index</a>'
 <br/>
 <span class="rainbow">Website © 2023 Firepup650</span>
 `;
-foot.style.marginTop = "auto";
-foot.style.textAlign = "center";
 document.querySelector("body").append(foot);
 console.debug("Footer Script done.")
