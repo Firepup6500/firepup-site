@@ -7,6 +7,7 @@
 
 * {
   color-scheme: light dark;
+  font-family: 'Source Code Pro', monospace !important;
 }
 
 html, body {
@@ -39,10 +40,6 @@ body {
 footer {
     margin-top: auto;
     text-align: center;
-}
-
-a, button, .rainbow, .force-color, span, label {
-    font-family: 'Source Code Pro', monospace !important;
 }
 
 a:has(button) {
