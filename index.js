@@ -1,4 +1,4 @@
-const express = require("express"), http = require('http'), UAParser = require('ua-parser-js'), fs = require('fs'), path = require("path"), app = express(), dir = __dirname, /*htmlfileloc = directory + "/public/pages", rawfileloc = directory + "/public/raw", cssfileloc = directory + "/public/scripts", jsfileloc = directory + "/public/styles", iconfileloc = directory + "/public/icons", errorfileloc = directory + "/public/errors", dynamfileloc = directory + "/public/dynamic", err404loc = errorfileloc + "/404.ejs", err422loc = errorfileloc + "/422.ejs", err403loc = errorfileloc + "/403.ejs", err500loc = errorfileloc + "/500.ejs", conloc = htmlfileloc + "/construction.html",*/ port = 8080, /*validImageTypes = ['.jpg', '.jpeg', '.png', '.gif'], imgsrv = "https://image-hosting.firepup650.repl.co",*/ axios = require('axios'), und = undefined, users = ["youngchief","coderelijah","bigminiboss","pikachub2005","jayayseaohbee14","9pfs","omegaorbitals","snakebyte"], aliases = {"smallmaxworker":"bigminiboss","9pfs1":"9pfs"}, exec = require('child_process').exec;
+const express = require("express"), http = require('http'), UAParser = require('ua-parser-js'), fs = require('fs'), path = require("path"), app = express(), root = __dirname, dir = root + "/punlic/", /*htmlfileloc = directory + "/public/pages", rawfileloc = directory + "/public/raw", cssfileloc = directory + "/public/scripts", jsfileloc = directory + "/public/styles", iconfileloc = directory + "/public/icons", errorfileloc = directory + "/public/errors", dynamfileloc = directory + "/public/dynamic", err404loc = errorfileloc + "/404.ejs", err422loc = errorfileloc + "/422.ejs", err403loc = errorfileloc + "/403.ejs", err500loc = errorfileloc + "/500.ejs", conloc = htmlfileloc + "/construction.html",*/ port = 8080, /*validImageTypes = ['.jpg', '.jpeg', '.png', '.gif'], imgsrv = "https://image-hosting.firepup650.repl.co",*/ axios = require('axios'), und = undefined, users = ["youngchief","coderelijah","bigminiboss","pikachub2005","jayayseaohbee14","9pfs","omegaorbitals","snakebyte"], aliases = {"smallmaxworker":"bigminiboss","9pfs1":"9pfs"}, exec = require('child_process').exec;
 var tracks = und, datas = und;
 //app.use(require("expressjs-remembering-doomsdaybear"))
 app.set('trust proxy', 1)
@@ -200,13 +200,13 @@ app.get("/cause-error-500", function(req, res, next) {
   throw new Error("Intentional 500 Internal Server Error");
 });
 app.get("/cause-error-404", function(req, res) {
-  res.status(404).render(dir + "/public/errors/404.ejs", { message: "Intentional 404 Not Found" });
+  res.status(404).render(dir + "errors/404.ejs", { message: "Intentional 404 Not Found" });
 });
 app.get("/cause-error-403", function(req, res) {
-  res.status(403).render(dir + "/public/errors/403.ejs", { message: "Intentional 403 Forbidden" });
+  res.status(403).render(dir + "errors/403.ejs", { message: "Intentional 403 Forbidden" });
 });
 app.get('/', function(req, res) {
-  res.sendFile(path.join(dir + "/public/pages/", `index.html`));
+  res.sendFile(path.join(dir + "pages/", `index.html`));
 });
 app.get(/\.html$/, function(req, res) {
   const strippedUrl = req.url.slice(0, -5);
@@ -254,7 +254,7 @@ app.get('/about-you', function(req, res) {
   if (deviceType == undefined) {
     deviceType = 'Unknown, might be desktop.';
   }
-  res.render(path.join(dynamfileloc, 'about-you'), {
+  res.render(path.join(dir + "dynamic/", 'about-you'), {
     userAgent: uAH,
     browserName: browserName,
     browserVersion: browserVersion,
@@ -270,7 +270,7 @@ app.get("/server-info", (req, res) => {
   execute("uptime -p", (sysup) => {
     let uptime = process.uptime();
     let author = "Firepup650";
-    res.render(dir + '/public/dynamic/server-info.ejs', {
+    res.render(dir + 'dynamic/server-info.ejs', {
       author: author,
       uptime: format(process.uptime()),
       system: sysup,
@@ -311,7 +311,7 @@ app.get("/youngchief/spotify", (req, res) => {
       cal      = "/images/error.png";
       error    = song;
     }
-    res.render(dir + '/public/dynamic/spotify.ejs', {
+    res.render(dir + 'dynamic/spotify.ejs', {
       playing:  playing,
       progress: secondsToMinutes(progress),
       isrc:     isrc,
@@ -345,7 +345,7 @@ app.get("/youngchief/spotify/queue", (req, res) => {
       raw      = "Unknown (Server Error)";
       error    = "Internal Error";
     }
-    res.render(dir + '/public/dynamic/spotify-queue.ejs', {
+    res.render(dir + 'dynamic/spotify-queue.ejs', {
       isrc:     isrcs,
       name:     names,
       raw:      raw,
@@ -374,7 +374,7 @@ app.get("/youngchief/spotify/history", (req, res) => {
       raw      = "Unknown (Server Error)";
       error    = "Internal Error";
     }
-    res.render(dir + '/public/dynamic/spotify-history.ejs', {
+    res.render(dir + 'dynamic/spotify-history.ejs', {
       isrc:     isrcs,
       name:     names,
       raw:      raw,
@@ -393,37 +393,37 @@ app.get('/rating/:name', function(req, res) {
 app.get('/user/:name', function(req, res) {
   let user = req.params.name
   if (isUser(user)) {
-    const htmlFilePath = path.join(htmlfileloc, `users/${user}.html`);
+    const htmlFilePath = path.join(dir + "pages/", `users/${user}.html`);
     res.sendFile(htmlFilePath);
   } else {
     let test = isAlias(user);
     if (test) {
       return res.redirect(`/user/${test}`)
     } else {
-      res.status(404).render(err404loc, {message: `User "${user}" does not have a user page. Contact @Firepup650 if you believe you have seen this message in error.`});
+      res.status(404).render(dir + "errors/404.ejs", {message: `User "${user}" does not have a user page. Contact @Firepup650 if you believe you have seen this message in error.`});
     }
   }
 });
 app.get('/ratings/:name', function(req, res) {
   let user = req.params.name
   if (isUser(user)) {
-    const htmlFilePath = path.join(htmlfileloc, `ratings/${user}.html`);
+    const htmlFilePath = path.join(dir + "pages/", `ratings/${user}.html`);
     res.sendFile(htmlFilePath);
   } else {
     let test = isAlias(user);
     if (test) {
       return res.redirect(`/ratings/${test}`)
     } else {
-      res.status(404).render(err404loc, {message: `User "${user}" does not have a ratings page. Contact @Firepup650 if you believe you have seen this message in error.`});
+      res.status(404).render(dir + "errors/404.ejs", {message: `User "${user}" does not have a ratings page. Contact @Firepup650 if you believe you have seen this message in error.`});
     }
   }
 });
 app.get('/:file', function(req, res) {
   const fileName = req.params.file;
-  const htmlFilePath = path.join(dir, `public/pages/${fileName}.html`);
+  const htmlFilePath = path.join(dir, `pages/${fileName}.html`);
   if (fs.existsSync(htmlFilePath) && fileName != "construction") {
     if (fileName.startsWith('forbid')) {
-      res.status(403).render(dir + "/public/errors/403.ejs");
+      res.status(403).render(dir + "errors/403.ejs");
     } else {
       res.sendFile(htmlFilePath);
     }
@@ -431,7 +431,7 @@ app.get('/:file', function(req, res) {
     if (isUser(fileName)) {
       return res.redirect(`/user/${fileName}`)
     } else if (!(isAlias(fileName))) {
-    res.status(404).render(dir + "/public/errors/404.ejs");
+      res.status(404).render(dir + "errors/404.ejs");
     } else {
       return res.redirect(`/user/${isAlias(fileName)}`);
     }
@@ -439,75 +439,75 @@ app.get('/:file', function(req, res) {
 });
 app.get('/raw/:file', function(req, res) {
   const fileName = req.params.file;
-  const filePath = path.join(dir, `public/raw/${fileName}`);
+  const filePath = path.join(dir + "raw/", `${fileName}`);
   if (fs.existsSync(filePath)) {
     if (fileName.startsWith('forbid')) {
-      res.status(403).render(dir + "/public/errors/403.ejs");
+      res.status(403).render(dir + "errors/403.ejs");
     } else {
       res.sendFile(filePath);
       /*
       fs.readFile(filePath, 'utf8', (err, data) => {
         if (err) {
-          res.render(dynamfileloc+"/raw.ejs", {fileName: "Error", fileData: err});
+          res.render(dir + "dynamic/raw.ejs", {fileName: "Error", fileData: err});
           return;
         }
-        res.render(dynamfileloc+"/raw.ejs", {fileName: fileName, fileData: data.replace(/\n/g, "<br />").replace(/=/g, " = ")});
+        res.render(dir + "dynamic/raw.ejs", {fileName: fileName, fileData: data.replace(/\n/g, "<br />").replace(/=/g, " = ")});
       })
       //*/
     }
   } else {
-    res.status(404).render(dir + "/public/errors/404.ejs", {message: "The requested file was not found on the server."});
+    res.status(404).render(dir + "errors/404.ejs", {message: "The requested file was not found on the server."});
   }
 });
 app.get('/rawFile/:file', function(req, res) {
   const fileName = req.params.file;
-  const filePath = path.join(rawfileloc, `${fileName}`);
+  const filePath = path.join(dir + "raw/", `${fileName}`);
   if (fs.existsSync(filePath)) {
     if (fileName.startsWith('forbid')) {
-      res.status(403).render(dir + "/public/errors/403.ejs");
+      res.status(403).render(dir + "/errors/403.ejs");
     } else {
       //res.sendFile(filePath);
       ///*
       fs.readFile(filePath, 'utf8', (err, data) => {
         if (err) {
-          res.render(dynamfileloc+"/raw.ejs", {fileName: "Error", fileData: err, raw: false});
+          res.render(dir + "dynamic/raw.ejs", {fileName: "Error", fileData: err, raw: false});
           return;
         }
-        res.render(dynamfileloc+"/raw.ejs", {fileName: fileName, fileData: data.replace(/\n/g, "<br />"), raw: true});
+        res.render(dir + "dynamic/raw.ejs", {fileName: fileName, fileData: data.replace(/\n/g, "<br />"), raw: true});
       })
       //*/
     }
   } else {
-    res.status(404).render(dir + "/public/errors/404.ejs", {message: "The requested file was not found on the server."});
+    res.status(404).render(dir + "errors/404.ejs", {message: "The requested file was not found on the server."});
   }
 });
 app.get('/file/:file', function(req, res) {
   const fileName = req.params.file;
-  const filePath = path.join(rawfileloc, `${fileName}`);
+  const filePath = path.join(dir + "raw/", `${fileName}`);
   if (fs.existsSync(filePath)) {
     if (fileName.startsWith('forbid')) {
-      res.status(403).render(dir + "/public/errors/403.ejs");
+      res.status(403).render(dir + "errors/403.ejs");
     } else {
       //res.sendFile(filePath);
       ///*
       fs.readFile(filePath, 'utf8', (err, data) => {
         if (err) {
-          res.render(dynamfileloc+"/raw.ejs", {fileName: "Error", fileData: err, raw: false});
+          res.render(dir + "dynamic/raw.ejs", {fileName: "Error", fileData: err, raw: false});
           return;
         }
-        res.render(dynamfileloc+"/raw.ejs", {fileName: fileName, fileData: data.replace(/\n/g, "<br />").replace(/=/g, " = "), raw: false});
+        res.render(dir + "dynamic/raw.ejs", {fileName: fileName, fileData: data.replace(/\n/g, "<br />").replace(/=/g, " = "), raw: false});
       })
       //*/
     }
   } else {
-    res.status(404).render(dir + "/public/errors/404.ejs", {message: "The requested file was not found on the server."});
+    res.status(404).render(dir + "errors/404.ejs", {message: "The requested file was not found on the server."});
   }
 });
 app.use(function(req, res, next) {
-  res.status(404).render(dir + "/public/errors/404.ejs");
+  res.status(404).render(dir + "errors/404.ejs");
 });
 app.use(function(error, req, res, next) {
-  res.status(500).render(dir + "/public/errors/500.ejs", { error });
+  res.status(500).render(dir + "errors/500.ejs", { error });
 });
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);
