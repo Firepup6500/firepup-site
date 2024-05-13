@@ -10,13 +10,27 @@
   <!-- <script async src="https://api.countapi.xyz/hit/firepup650.repl.co/cheese"></script> -->
     <div id="preloads">
       <link rel="preload" href="/images/cheese.png" as="image">
+      <link rel="preload" href="/images/purple-cheese.png" as="image">
     </div>
   </head>
   <body>
     <h5 hidden id='Maintenance' class="center"></h5>
-    <p class="center rainbow" id="bc"></p>
+    <input class="center" type="checkbox" name="checkbox1" id="check" onclick="return cheeseTheme();">
+    <label for="check">
+      <span class="center force-color">But what if it was purple?</span>
+    </label>
     <img alt="Bouncing cheese" id="cheese" src="/images/cheese.png" style="position: fixed; z-index: -1;" class="no-special">
     <script>
+    function cheeseTheme() {  
+      var checkbox = document.getElementById("check");
+      if(!checkbox.checked) {
+        document.getElementById("cheese").src = "/images/cheese.png"
+        document.getElementById("cheese").alt = "Cheese"
+      } else {
+        document.getElementById("cheese").src = "/images/purple-cheese.png"
+        document.getElementById("cheese").alt = "Purple Cheese"
+      }
+    }
     var vX = 2;
     var ovX = 2;
     var ovY = 2;
