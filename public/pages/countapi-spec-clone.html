@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>FP650 - CountAPI spec clone</title>
+    <link href="/countapi.css" rel="stylesheet" type="text/css" />
+    <link href="/atom-one-dark.min.css" rel="stylesheet" type="text/css" />
+  <!-- <script async src="https://api.countapi.xyz/hit/firepup650.repl.co/visits"></script> -->
+  <!-- <script async src="https://api.countapi.xyz/hit/firepup650.repl.co/countapi-spec-clone"></script> -->
+  </head>
+  <body>
+      <section class="container">
+        <h1 id="api">API</h1>
+            <h2>Namespaces</h2>
+            <p>Namespaces are meant to avoid name collisions. You may specify a namespace during the creation of a key. Its recommend use the domain of the application as namespace to avoid collision with other websites.<br>If the namespace is not specified the key is assigned to the <code>default</code> namespace. If your key resides in the default namespace you don't need to specify it.</p>
+            <h2>Endpoints</h2>
+            <p>
+            All requests support <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" target="_blank">cross-origin resource sharing</a> (CORS) and SSL.<br>
+            You can use <a href="https://en.wikipedia.org/wiki/JSONP">JSONP</a> sending the callback parameter. JSONP requests will never fail, they will include the HTTP code in the response.<br>
+            Also a 1x1 GIF image is supported sending <code>?img</code>.
+            </p>
+            <p>Base API path: <a href="https://api.countapi.xyz" target="_blank">https://api.countapi.xyz</a></p>
+            <p>In the case of a server failure, the API will send:</p>
+            <pre class="fail">⇒ 500 { "error": "Error description" }</pre>
+            <h3 class="endpoint">/get/:namespace?/:key</h3>
+            <p>Get the value of a key. Optionally specify the namespace.</p>
+            <pre class="success"><a href="https://api.countapi.xyz/get/test" target="_blank">https://api.countapi.xyz/get/test</a>
+⇒ 200 { "value": 42 }
+
+<a href="https://api.countapi.xyz/get/mysite.com/test" target="_blank">https://api.countapi.xyz/get/mysite.com/test</a>
+⇒ 200 { "value": 24 }</pre>
+            <pre class="fail"><a href="https://api.countapi.xyz/get/nonexisting" target="_blank">https://api.countapi.xyz/get/nonexisting</a>
+⇒ 404 { "value": null }</pre>
+            <h3 class="endpoint">/set/:namespace?/:key?value=:value</h3>
+            <p>Set the value of a key. Optionally specify the namespace. The key <b>must</b> be created with <code>enable_reset</code> set to <code>1</code> (true).</p>
+            <p>This endpoint will return the previous value before the assignation.</p>
+            <pre class="success"><a href="https://api.countapi.xyz/set/test?value=69" target="_blank">https://api.countapi.xyz/set/test?value=69</a>
+⇒ 200 { "old_value": 42, "value": 69 }
+
+<a href="https://api.countapi.xyz/set/mysite.com/test?value=96" target="_blank">https://api.countapi.xyz/set/mysite.com/test?value=96</a>
+⇒ 200 { "old_value": 24, "value": 96 }</pre>
+            <pre class="fail"><a href="https://api.countapi.xyz/set/resetdisabled?value=33" target="_blank">https://api.countapi.xyz/set/resetdisabled?value=33</a>
+⇒ 403 { "old_value": 1234, "value": 1234 }
+
+<a href="https://api.countapi.xyz/set/nonexisting?value=33" target="_blank">https://api.countapi.xyz/set/nonexisting?value=33</a>
+⇒ 404 { "old_value": null, "value": null }</pre>
+            <h3 class="endpoint">/update/:namespace?/:key?amount=:amount</h3>
+            <p>Updates a key with <code>+/- amount</code>. Optionally specify the namespace. The <code>amount</code> <b>must</b> be within <code>update_lowerbound</code> and <code>update_upperbound</code> specified during the creation of the key.</p>
+            <pre class="success"><a href="https://api.countapi.xyz/update/test?amount=5" target="_blank">https://api.countapi.xyz/update/test?amount=5</a> (value was 42)
+⇒ 200 { "value": 47 }
+
+<a href="https://api.countapi.xyz/update/mysite.com/test?amount=-7" target="_blank">https://api.countapi.xyz/update/mysite.com/test?amount=-7</a> (value was 53)
+⇒ 200 { "value": 46 }</pre>
+<pre class="fail"><a href="https://api.countapi.xyz/update/outofrange?amount=3" target="_blank">https://api.countapi.xyz/update/outofrange?amount=3</a> (value was 47, update_upperbound=2)
+⇒ 403 { "value": 47 }
+
+<a href="https://api.countapi.xyz/update/nonexisting?amount=1" target="_blank">https://api.countapi.xyz/update/nonexisting?amount=1</a>
+⇒ 404 { "value": null }</pre>
+            <h3 class="endpoint">/hit/:namespace?/:key</h3>
+            <p>An easier way to track incrementing by one keys. This endpoint will create a key if it doesn't exists and increment it by one on each subsequent request. Optionally specify a namespace.<br>The key created has the following properties:</p>
+            <ul>
+                <li><code>enable_reset</code> to <code>0</code> (false)</li>
+                <li><code>update_lowerbound</code> to <code>0</code></li>
+                <li><code>update_upperbound</code> to <code>1</code></li>
+            </ul>
+            <p>Effectively making the key only incrementable by one.</p>
+            <pre class="success"><a href="https://api.countapi.xyz/hit/mysite.com/visits" target="_blank">https://api.countapi.xyz/hit/mysite.com/visits</a> (value was 35)
+⇒ 200 { "value": 36 }
+
+<a href="https://api.countapi.xyz/hit/nonexisting" target="_blank">https://api.countapi.xyz/hit/nonexisting</a> (key is created)
+⇒ 200 { "value": 1 }</pre>
+            <h3 class="endpoint">/create</h3>
+            <p>Creates a key.<br>All parameters are optional</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>name</th>
+                        <th>default</th>
+                        <th>description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>key</td>
+                        <td>New UUID</td>
+                        <td>Name of the key</td>
+                    </tr>
+                    <tr>
+                        <td>namespace</td>
+                        <td>default</td>
+                        <td>Namespace to store the key</td>
+                    </tr>
+                    <tr>
+                        <td>value</td>
+                        <td>0</td>
+                        <td>The initial value stored</td>
+                    </tr>
+                    <tr>
+                        <td>enable_reset</td>
+                        <td>0</td>
+                        <td>Allows the key to be resetted with <b>/set</b></td>
+                    </tr>
+                    <tr>
+                        <td>update_lowerbound</td>
+                        <td>-1</td>
+                        <td>Restrict update to not subtract more than this number. This number <b>must</b> be negative or zero.</td>
+                    </tr>
+                    <tr>
+                        <td>update_upperbound</td>
+                        <td>1</td>
+                        <td>Restrict update to not add more than this number. This number <b>must</b> be positive or zero.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <pre class="info">Note about <b>expiration</b>: Every time a key is updated its expiration is set to <b>6 months</b>. So don't worry, if you still using it, it won't expire.</pre>
+            <pre class="info" id="format">Keys and namespaces must have at least 3 characters and less or equal to 64. Keys and namespaces must match: <b>^[A-Za-z0-9_\-.]{3,64}$</b></pre>
+            <pre class="success"><a href="https://api.countapi.xyz/create" target="_blank">https://api.countapi.xyz/create</a>
+⇒ 200 {"namespace":"default", "key":"6d5891ff-ebda-48fb-a760-8549d6a3bf3a", "value":0}
+
+<a href="https://api.countapi.xyz/create?namespace=mysite.com&amp;value=42" target="_blank">https://api.countapi.xyz/create?namespace=mysite.com&amp;value=42</a>
+⇒ 200 {"namespace":"mysite.com", "key":"33606dbe-4800-4228-b042-5c0fb8ec8f08", "value":42}
+
+<a href="https://api.countapi.xyz/create?key=counter&amp;expiration=60" target="_blank">https://api.countapi.xyz/create?key=counter&amp;expiration=60</a>
+⇒ 200 { "namespace": "default", "key":"counter", "value": 0 }</pre>
+<pre class="fail"><a href="https://api.countapi.xyz/create?name=alreadycreated" target="_blank">https://api.countapi.xyz/create?name=alreadycreated</a> (the key already existed)
+⇒ 409 { "namespace": null, "key": null, "value": null }</pre>
+            <h3 class="endpoint">/info/:namespace?/:key</h3>
+            <p>Get information about a key. Optionally specify the namespace.</p>
+            <pre class="success"><a href="https://api.countapi.xyz/info/test" target="_blank">https://api.countapi.xyz/info/test</a>
+⇒ 200 {
+    "namespace": "default",
+    "key": "test",
+    "ttl": 321,
+    "value": 42,
+    "enable_reset": false,
+    "update_upperbound": 1,
+    "update_lowerbound": 1
+}</pre>
+<pre class="fail"><a href="https://api.countapi.xyz/info/nonexisting" target="_blank">https://api.countapi.xyz/info/nonexisting</a>
+⇒ 404 {
+    "namespace": null,
+    "key": null,
+    "ttl": null,
+    "value": null,
+    "enable_reset": null,
+    "update_upperbound": null,
+    "update_lowerbound": null
+}</pre>
+            <h3 class="endpoint">/stats</h3>
+            <p>Get some CountAPI stats</p>
+            <pre class="success"><a href="https://api.countapi.xyz/stats" target="_blank">https://api.countapi.xyz/stats</a>
+⇒ 200 {
+    "keys_created": <span data-stat-id="keys_created">...</span>,
+    "keys_updated": <span data-stat-id="keys_updated">...</span>,
+    "requests": <span data-stat-id="requests">...</span>,
+    "version": "<span data-stat-id="version">...</span>"
+}</pre>
+</section>
+</body>
+</html>
