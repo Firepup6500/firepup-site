@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>FP650 - Calculator</title>
+    <link href="/style.css" rel="stylesheet" type="text/css" />
+    <link href="/styles/bounce.css" rel="stylesheet" type="text/css" />
+    <!-- <script async src="https://api.countapi.xyz/hit/firepup650.repl.co/visits"></script> -->
+  <!-- <script async src="https://api.countapi.xyz/hit/firepup650.repl.co/construction"></script> -->
+  </head>
+  <body>
+    <h5 hidden id='Maintenance' class="center"></h5>
+    <span class="center">
+      <h3 class="force-color">Calculator</h3>
+      <button class="cyan run-button" onclick="calc()">Run Calculator</button><br/>
+      <span class="force-color">Bookmarklet: </span><span id="access" class="force-color">javascript:x=prompt('Equation?');x=eval(x);alert(`The solution is: ${x}`)</span> <button class="cyan copy-button" onclick="copy('access')">Copy</button><br/>
+    </span>
+    <script src="/script.js"></script>
+    <!-- Modified from https://www.geeksforgeeks.org/how-to-create-copy-to-clipboard-button/ /!-->
+    <script>
+function copy(element) {
+  const elemText = document.getElementById(element).innerText;
+  navigator.clipboard.writeText(elemText);  
+}
+//   <!-- End Modified GeeksforGeeks code /!-->
+function calc() {
+  let x = prompt('Equation?');
+  x = eval(x);
+  alert(`The solution is: ${x}`);
+}
+  </script>
+  <!-- Modified from https://codepen.io/nrrrdcore/pen/XbZBpq /!-->
+  <style>
+.copy-button {
+  cursor: pointer;
+  
+  &:before {
+    content: '';
+    display: none;
+    position: absolute;
+    z-index: 9998;
+    top: 35px;
+    left: 15px;
+    width: 0;
+    height: 0;
+    
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid rgba(0,0,0,.72);
+  }
+
+  &:after {
+    content: 'Copy to Clipboard';
+    display: none;
+    position: absolute;
+    z-index: 9999;
+    top: 30px;
+    left: 0px;
+    width: 114px;
+    height: 36px;
+
+    color: #fff;
+    font-size: 10px;
+    line-height: 36px;
+    text-align: center;
+
+    border-radius: 3px;
+  }
+  
+  &:hover {
+    
+    &:before, &:after {
+      display: block;
+    }
+  }
+  
+  &:active, &:focus {
+    
+    &:after {
+      content: 'Copied!';
+    }
+  }
+}
+  </style>
+  <!-- End Modified codepen code (Julie Horvath) /!-->
+  </body>
+</html>
