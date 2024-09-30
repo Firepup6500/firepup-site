@@ -208,6 +208,10 @@ app.get("/cause-error-403", function(req, res) {
 app.get('/', function(req, res) {
   res.sendFile(path.join(dir + "pages/", `index.html`));
 });
+app.get("/dynmap", function(req, res) {
+  return res.redirect("/bluemap/")
+  next();
+});
 app.get(/\.html$/, function(req, res) {
   const strippedUrl = req.url.slice(0, -5);
   return res.redirect(strippedUrl);
