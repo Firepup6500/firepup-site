@@ -1,14 +1,13 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap'); */
 
 @font-face {
-    font-family: 'Source Code Pro';
-    src: url('/fonts/SourceCodePro.ttf');
+  font-family: 'Source Code Pro';
+  src: url('/fonts/SourceCodePro.ttf');
 }
 
 * {
-    color-scheme: light dark;
-    font-family: 'Source Code Pro', monospace !important;
-    color: #00FF00;
+  color-scheme: light dark;
+  font-family: 'Source Code Pro', monospace !important;
 }
 
 html, body {
