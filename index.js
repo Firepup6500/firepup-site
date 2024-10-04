@@ -182,6 +182,7 @@ app.use("/video", express.static(dir + "videos"));
 app.use("/scripts", express.static(dir + "scripts"));
 app.use("/fonts", express.static(dir + "fonts"));
 app.use("/icons", express.static(dir + "icons"));
+app.use("/favicon.ico", express.static(dir + "icons/favicon.ico"))
 app.use("/images", express.static(dir + "images"));
 /*
 app.get("/images/:filename", function(req, res, next) {
