@@ -3,6 +3,6 @@ function dLS(url) {
     script.src = url;
     document.head.appendChild(script);
 }
-dLS("pgen.js")
-dLS("footer.js")
+dLS("/scripts/pgen.js")
+dLS("/scripts/footer.js")
 console.log("PwdGen scripts loaded")

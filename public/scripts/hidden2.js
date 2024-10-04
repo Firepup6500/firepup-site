@@ -3,7 +3,7 @@ function dLS(url) {
     script.src = url;
     document.head.appendChild(script);
 }
-dLS("hidden.js")
-dLS("footer.js")
-dLS("poof.js")
+dLS("/scripts/hidden.js")
+dLS("/scripts/footer.js")
+dLS("/scripts/poof.js")
 console.log("Hidden scripts loaded")

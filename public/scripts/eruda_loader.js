@@ -13,7 +13,7 @@ function keydownListener(event) {
   } else {
     dPressed = false;
     ePressed = false;
-    vPressed = false; 
+    vPressed = false;
   }
 }
 document.addEventListener('keydown', keydownListener);
@@ -27,7 +27,7 @@ function keyupListener(e) {
     eruda.init();
     document.removeEventListener('keyup', keyupListener);
     document.removeEventListener('keydown', keydownListener);
-  } 
+  }
 }
 document.addEventListener('keyup', keyupListener);
 console.debug("Listener Script ready.")

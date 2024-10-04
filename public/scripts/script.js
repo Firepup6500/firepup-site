@@ -4,7 +4,7 @@ function dLS(url) {
     document.head.appendChild(script);
 }
 dLS("https://cdn.jsdelivr.net/npm/eruda@2.11.3/eruda.min.js")
-dLS("/footer.js")
-dLS("/maintenance.js")
-dLS("/eruda_loader.js")
+dLS("/scripts/footer.js")
+dLS("/scripts/maintenance.js")
+dLS("/scripts/eruda_loader.js")
 console.info("Main Script done.")

@@ -176,13 +176,13 @@ function format(seconds){
   return pad(hours) + ':' + pad(minutes) + ':' + pad(seconds);
 }
 app.use(cookieCheck);
-app.use(express.static(dir + "styles"));
-app.use(express.static(dir + "audio"));
-app.use(express.static(dir + "videos"));
-app.use(express.static(dir + "scripts"));
-app.use(express.static(dir + "fonts"));
-app.use(express.static(dir + "icons"));
-app.use(express.static(dir + "images"));
+app.use("/styles", express.static(dir + "styles"));
+app.use("/audio", express.static(dir + "audio"));
+app.use("/video", express.static(dir + "videos"));
+app.use("/scripts", express.static(dir + "scripts"));
+app.use("/fonts", express.static(dir + "fonts"));
+app.use("/icons", express.static(dir + "icons"));
+app.use("/images", express.static(dir + "images"));
 /*
 app.get("/images/:filename", function(req, res, next) {
   let path = '/' + req.params.filename;
