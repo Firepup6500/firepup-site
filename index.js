@@ -177,12 +177,14 @@ function format(seconds){
 }
 app.use(cookieCheck);
 app.use("/styles", express.static(dir + "styles"));
+app.use("/.well-known", express.static(dir + ".well-known"));
 app.use("/audio", express.static(dir + "audio"));
 app.use("/video", express.static(dir + "videos"));
 app.use("/scripts", express.static(dir + "scripts"));
 app.use("/fonts", express.static(dir + "fonts"));
 app.use("/icons", express.static(dir + "icons"));
 app.use("/favicon.ico", express.static(dir + "icons/favicon.ico"))
+app.use("/errors/502", express.static(dir + "errors/502.html"))
 app.use("/images", express.static(dir + "images"));
 /*
 app.get("/images/:filename", function(req, res, next) {
