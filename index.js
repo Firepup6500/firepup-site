@@ -514,12 +514,14 @@ app.use(function(req, res, next) {
   res.status(404).render(dir + "errors/404.ejs");
 });
 app.use(function(error, req, res, next) {
+  console.log(error);
   res.status(500).render(dir + "errors/500.ejs", { error });
 });
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);
 });
 app.on("error", error => {
+  console.log(error)
   if (error.syscall !== "listen") {
     throw error;
   }

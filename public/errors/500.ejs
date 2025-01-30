@@ -14,8 +14,6 @@
     <h1 class="center warning">500 Internal Server Error</h1>
     <p class="center warning">An error has occurred on the server.</p>
     <% if (error) { %>
-      <h2 class="center warning">Error message:</h2>
-      <pre class="center warning"><%= error.message %></pre>
       <h2 class="center warning">Stack trace:</h2>
       <pre class="center warning"><%= error.stack %></pre>
     <% } %>
