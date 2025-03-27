@@ -8,24 +8,24 @@
 * {
     color-scheme: light dark;
     font-family: 'Source Code Pro', monospace !important;
-    color: #00FF00;
+    color: #0F0;
 }
 
 html, body {
     height: 100%;
     width: 100%;
-    color: #00FF00;
+    color: #0F0;
     margin: 0;
     padding: 0;
     font-family: 'Source Code Pro', monospace !important;
 }
 
 html {
-    background-color: #000000;
+    background-color: #000;
 }
 
 .warning {
-    color: #FF0000;
+    color: #F00;
 }
 
 body {
@@ -52,7 +52,7 @@ a:has(button) {
     box-shadow: none;
     transform: none;
     outline: none;
-    background: #000000;
+    background: #000;
 }
 
 .center {
@@ -71,7 +71,7 @@ a:has(button) {
 
 /*
 .rainbow {
-    background: linear-gradient(90.02deg, #ff0000 0.02%, #e100ff 27.09%, #00b3ff 51.04%, #00ff1e 76.56%, #ff0000 99.99%);
+    background: linear-gradient(90.02deg, #F00 0.02%, #E0F 27.09%, #0BF 51.04%, #0F1 76.56%, #F00 99.99%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -80,7 +80,7 @@ a:has(button) {
 */
 
 .rainbow {
-    background: linear-gradient(to right, #ff0000 0%, #e100ff 10%, #00b3ff 30%, #00ff1e 50%, #ff0000 90%);
+    background: linear-gradient(to right, #F00 0%, #E0F 10%, #0BF 30%, #0F1 50%, #F00 90%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -88,11 +88,11 @@ a:has(button) {
 }
 
 .color {
-    color: #00FF00;
+    color: #0F0;
 }
 
 .force-color {
-    background: #00ff00;
+    background: #0F0;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -107,7 +107,7 @@ a:has(button) {
 }
 
 pre {
-    background: #111111;
+    background: #111;
     width: 100%;
     max-width: 100%;
     min-width: 100%;
