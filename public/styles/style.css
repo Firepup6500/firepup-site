@@ -5,7 +5,8 @@
     --fp-background: #000;
     --fp-secondary: #0FF;
     --fp-danger: #F00;
-    --fp-dim: #111;
+    --fp-code: #111;
+    --fp-button: #222;
 }
 
 @font-face {
@@ -54,6 +55,11 @@ footer {
 a:has(button) {
     box-shadow: none !important;
     transform: none !important;
+}
+
+a {
+    background: var(--fp-button);
+    color: var(--fp-secondary);
 }
 
 #replit-badge {
@@ -105,7 +111,7 @@ a:has(button) {
 }
 
 pre {
-    background: var(--fp-dim);
+    background: var(--fp-code);
     width: 100%;
     max-width: 100%;
     min-width: 100%;
