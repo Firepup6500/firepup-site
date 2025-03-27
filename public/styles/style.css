@@ -114,7 +114,8 @@ pre {
 }
 
 code {
-	overflow-x: auto;
-	max-width: 100%;
-	display: block;
+    overflow-x: auto;
+    max-width: 100%;
+    display: block;
+    margin: 0ch 1ch;
 }
