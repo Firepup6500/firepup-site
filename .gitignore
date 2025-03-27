@@ -6,3 +6,5 @@ venv/**
 .config/**
 replit*txt
 node_modules/**
+public/raw/**
+public/audio/**
