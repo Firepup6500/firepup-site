@@ -105,3 +105,16 @@ a:has(button) {
     outline: none !important;
     transition: none !important;
 }
+
+pre {
+    background: #111111;
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+}
+
+code {
+	overflow-x: auto;
+	max-width: 100%;
+	display: block;
+}
