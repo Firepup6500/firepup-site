@@ -2,11 +2,19 @@
 
 :root {
     --fp-primary: #0F0;
+    --fp-primary-dim: #0A0;
+    --fp-primary-dimmer: #050;
     --fp-background: #000;
     --fp-secondary: #0FF;
+    --fp-secondary-dim: #0AA;
+    --fp-secondary-dimmer: #055;
     --fp-danger: #F00;
+    --fp-danger-dim: #A00;
+    --fp-danger-dimmer: #500;
     --fp-code: #111;
     --fp-button: #222;
+    --fp-button-dim: #111;
+    --fp-white: #FFF;
 }
 
 @font-face {
@@ -18,19 +26,52 @@
     color-scheme: light dark;
     font-family: 'Source Code Pro', monospace !important;
     color: var(--fp-primary);
+    margin: 0;
+    padding: 0;
 }
 
 html, body {
     height: 100%;
     width: 100%;
-    color: var(--fp-primary);
-    margin: 0;
-    padding: 0;
     font-family: 'Source Code Pro', monospace !important;
+}
+
+card, button, table tr, a, .switch-container {
+  position: relative;
 }
 
 html {
     background-color: var(--fp-background);
+}
+
+h1 {
+    font-size: 64px;
+    line-height: 128px;
+}
+
+h2 {
+    font-size: 48px;
+    line-height: 96px;
+}
+
+h3 {
+    font-size: 32px;
+    line-height: 64px;
+}
+
+h4 {
+    font-size: 24px;
+    line-height: 48px;
+}
+
+h5 {
+    font-size: 20px;
+    line-height: 40px;
+}
+
+h6 {
+    font-size: 16px;
+    line-height: 32px;
 }
 
 .warning {
@@ -58,8 +99,62 @@ a:has(button) {
 }
 
 a {
+    text-decoration: none;
+    border: none;
+    border-radius: 2px;
+    padding: 2px 4px;
+    margin-top: 6px !important;
+    margin-bottom: 2px !important;
     background: var(--fp-button);
     color: var(--fp-secondary);
+    display: inline-block;
+}
+
+a:hover, a:focus-visible {
+    outline: 1px solid var(--fp-secondary);
+    transform: translateX(4px) translateY(-4px);
+    box-shadow: -4px 4px 0 0 var(--fp-button-dim), -4px 4px 0 1px var(--fp-secondary-dimmer);
+}
+
+a:active {
+    outline: 1px solid var(--fp-secondary);
+    transform: translateX(2px) translateY(-2px);
+    box-shadow: -2px 2px 0 0 var(--fp-button-dim), -2px 2px 0 1px var(--fp-secondary-dimmer);
+}
+
+button:disabled, button:hover:disabled, button:focus-visible:disabled, button:active:disabled {
+    cursor: not-allowed;
+    transform: none;
+    background: var(--fp-secondary-dim);
+    color: var(--fp-button-dim);
+    outline: 1px solid var(--fp-danger-dim);
+    box-shadow: none;
+}
+
+button {
+    font-size: 16px;
+    line-height: 24px;
+    cursor: pointer;
+    border: none;
+    border-radius: 2px;
+    padding: 4px 16px;
+    margin-top: 6px !important;
+    margin-bottom: 2px !important;
+    background: var(--fp-secondary);
+    color: var(--fp-button);
+    outline: 1px solid var(--fp-dim);
+}
+
+button:hover, button:focus-visible {
+    outline: 1px solid var(--fp-danger);
+    transform: translateX(4px) translateY(-4px);
+    box-shadow: -4px 4px 0 0 var(--fp-secondary-dimmer), -4px 4px 0 1px var(--fp-danger-dimmer);
+}
+
+button:active {
+    outline: 1px solid var(--fp-danger);
+    transform: translateX(2px) translateY(-2px);
+    box-shadow: -2px 2px 0 0 var(--fp-secondary-dimmer), -2px 2px 0 1px var(--fp-danger-dimmer);
 }
 
 #replit-badge {
@@ -121,4 +216,9 @@ code {
     overflow-x: auto;
     display: block;
     margin: 0ch 1ch;
+}
+
+.eruda-search-highlight-block .eruda-keyword {
+    background: #ffe !important;
+    color:#550 !important;
 }
