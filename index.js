@@ -1,5 +1,5 @@
-const express = require("express"), http = require('http'), UAParser = require('ua-parser-js'), fs = require('fs'), path = require("path"), app = express(), root = __dirname, dir = root + "/public/", port = 8080, axios = require('axios'), und = undefined, users = ["youngchief","coderelijah","bigminiboss","pikachub2005","jayayseaohbee14","9pfs","omegaorbitals","snakebyte", "end"], aliases = {"smallmaxworker":"bigminiboss","9pfs1":"9pfs", "endoftimee": "end"}, exec = require('child_process').exec;
-var tracks = und, datas = und;
+const express = require("express"), http = require('http'), UAParser = require('ua-parser-js'), fs = require('fs'), path = require("path"), app = express(), root = __dirname, dir = root + "/public/", port = 8080, axios = require('axios'), users = ["youngchief","coderelijah","bigminiboss","pikachub2005","jayayseaohbee14","9pfs","omegaorbitals","snakebyte", "end"], aliases = {"smallmaxworker":"bigminiboss","9pfs1":"9pfs", "endoftimee": "end"}, exec = require('child_process').exec;
+var tracks = undefined, datas = undefined;
 //app.use(require("expressjs-remembering-doomsdaybear"))
 app.set('trust proxy', 1)
 const cookieCheck = (req, res, next) => {
@@ -28,7 +28,7 @@ const spotifyRequest = ((rawData, name, time, deezerData) => {
     });
   }).catch(err => {
     console.log('YCSPR Error (YC\'s end):', err.message);
-    rawData(und,err.message,und,und);
+    rawData(undefined,err.message,undefined,undefined);
   });
 });
 const spotifyQueueRequest = ((rawData, isrcs, names, dzDatas) => {
@@ -55,7 +55,7 @@ const spotifyQueueRequest = ((rawData, isrcs, names, dzDatas) => {
     rawData(data,ids,tracks,datas);
   }).catch(err => {
     console.log('YCSPR Error (YC\'s end):', err.message, err);
-    rawData(und,err.message,und,und);
+    rawData(undefined,err.message,undefined,undefined);
   });
 });
 const spotifyHistoryRequest = ((rawData, isrcs, names, dzDatas) => {
@@ -82,7 +82,7 @@ const spotifyHistoryRequest = ((rawData, isrcs, names, dzDatas) => {
     rawData(data,ids,tracks,datas);
   }).catch(err => {
     console.log('YCSPR Error (YC\'s e nd):', err.message, err);
-    rawData(und,err.message,und,und);
+    rawData(undefined,err.message,undefined,undefined);
   });
 });
 let startTime = Date.now();
@@ -297,7 +297,7 @@ app.get("/youngchief/spotify", (req, res) => {
     let contribs  = "Not set by route";
     let cal       = "Not set by route";
     let end       = "Not set by route";
-    let error     = und;
+    let error     = undefined;
     if (data && data.error) {
       end      = "Youngchief's end";
       raw      = JSON.stringify(data).replace(/,/g,", ");
@@ -338,7 +338,7 @@ app.get("/youngchief/spotify/queue", (req, res) => {
     let names     = "Not set by route";
     let raw       = "Not set by route";
     let end       = "Not set by route";
-    let error     = und;
+    let error     = undefined;
     if (data && data.error) {
       end      = "Youngchief's end";
       raw      = JSON.stringify(data).replace(/,/g,", ");
@@ -367,7 +367,7 @@ app.get("/youngchief/spotify/history", (req, res) => {
     let names     = "Not set by route";
     let raw       = "Not set by route";
     let end       = "Not set by route";
-    let error     = und;
+    let error     = undefined;
     if (data && data.error) {
       end      = "Youngchief's end";
       raw      = JSON.stringify(data).replace(/,/g,", ");
