@@ -1,4 +1,4 @@
-const express = require("express"), http = require('http'), UAParser = require('ua-parser-js'), fs = require('fs'), path = require("path"), app = express(), root = __dirname, dir = root + "/public/", port = 8080, axios = require('axios'), und = undefined, users = ["youngchief","coderelijah","bigminiboss","pikachub2005","jayayseaohbee14","9pfs","omegaorbitals","snakebyte"], aliases = {"smallmaxworker":"bigminiboss","9pfs1":"9pfs"}, exec = require('child_process').exec;
+const express = require("express"), http = require('http'), UAParser = require('ua-parser-js'), fs = require('fs'), path = require("path"), app = express(), root = __dirname, dir = root + "/public/", port = 8080, axios = require('axios'), und = undefined, users = ["youngchief","coderelijah","bigminiboss","pikachub2005","jayayseaohbee14","9pfs","omegaorbitals","snakebyte", "end"], aliases = {"smallmaxworker":"bigminiboss","9pfs1":"9pfs", "endoftimee": "end"}, exec = require('child_process').exec;
 var tracks = und, datas = und;
 //app.use(require("expressjs-remembering-doomsdaybear"))
 app.set('trust proxy', 1)
