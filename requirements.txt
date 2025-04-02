@@ -1,5 +1,1 @@
-axios
-ejs
-express
-ua-parser-js
-nodemon
+axios@latest ejs@latest express@latest ua-parser-js@latest nodemon@latest
