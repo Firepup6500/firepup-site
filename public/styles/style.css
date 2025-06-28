@@ -190,6 +190,7 @@ button:active {
     color: var(--fp-primary);
 }
 
+/*
 .force-color {
     background: var(--fp-primary);
     -webkit-background-clip: text;
@@ -197,6 +198,7 @@ button:active {
     background-clip: text;
     text-fill-color: transparent;
 }
+*/
 
 .no-special {
     box-shadow: none !important;
