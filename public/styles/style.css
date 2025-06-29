@@ -8,6 +8,9 @@
     --fp-secondary: #0FF;
     --fp-secondary-dim: #0AA;
     --fp-secondary-dimmer: #055;
+    --fp-visited: #F0F;
+    --fp-visited-dim: #A0A;
+    --fp-visited-dimmer: #505;
     --fp-danger: #F00;
     --fp-danger-dim: #A00;
     --fp-danger-dimmer: #500;
@@ -120,6 +123,14 @@ a:active {
     outline: 1px solid var(--fp-secondary);
     transform: translateX(2px) translateY(-2px);
     box-shadow: -2px 2px 0 0 var(--fp-button-dim), -2px 2px 0 1px var(--fp-secondary-dimmer);
+}
+
+a:visited {
+    color: var(--fp-visited);
+}
+
+a:hover:visited, a:focus-visible:visited, a:active:visited {
+    outline: 1px solid var(--fp-visited);
 }
 
 button:disabled, button:hover:disabled, button:focus-visible:disabled, button:active:disabled {
