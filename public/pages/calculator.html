@@ -21,10 +21,11 @@
   </head>
   <body>
     <h5 hidden id='Maintenance' class="center"></h5>
+    <noscript><h4 class="warning center">This page is non-functional without javascript.</h4></noscript>
     <span class="center">
       <h3>Calculator</h3>
-      <button class="run-button" onclick="calc()">Run Calculator</button><br/>
-      <span>Bookmarklet: </span><span id="access">javascript:x=prompt('Equation?');x=eval(x);alert(`The solution is: ${x}`)</span> <button class="copy-button" onclick="copy('access')">Copy</button><br/>
+      <button onclick="calc()" disabled>Run Calculator</button><br/>
+      <span>Bookmarklet: </span><span id="access">javascript:x=prompt('Equation?');x=eval(x);alert(`The solution is: ${x}`)</span> <button class="copy-button" onclick="copy('access')" disabled>Copy</button><br/>
     </span>
     <script src="/scripts/script.js"></script>
     <noscript><br/><br/><footer class="rainbow">Hey there buddy, just wanted to let you know that I completely understand not enabling javascript. On the other hand, it means certain features of my site (e.g. the footer, the password generator, the cheese and DVD logo, etc.) just won't work for you.</footer></noscript>
@@ -40,6 +41,7 @@ function calc() {
   x = eval(x);
   alert(`The solution is: ${x}`);
 }
+document.querySelectorAll("[disabled]").forEach(e=>e.disabled=false);
   </script>
   <!-- Modified from https://codepen.io/nrrrdcore/pen/XbZBpq /!-->
   <style>

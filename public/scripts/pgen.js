@@ -23,3 +23,4 @@ function genPwd() {
   }
   document.getElementById("password").innerText = "Your random password is: " + rndPwd;
 }
+document.querySelectorAll("[disabled]").forEach(e=>e.disabled=false);

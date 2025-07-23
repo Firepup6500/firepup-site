@@ -32,10 +32,15 @@
   </head>
   <body>
     <h5 hidden id='Maintenance' class="center"></h5>
-    <input class="center" type="checkbox" name="checkbox1" id="check" onclick="return logoTheme();"></input>
-    <label for="check"><span class="center">Toggle logo theme</span></label>
-    <input class="center" type="checkbox" name="checkbox1" id="check2" onclick="return logoRainbow();"></input>
-    <label for="check2"><span class="center">Toggle rainbow theme</span></label>
+    <noscript><h4 class="warning center">This page is non-functional without javascript.</h4></noscript>
+    <label class="center">
+      Toggle logo theme
+      <input type="checkbox" id="check" onclick="return logoTheme();" disabled>
+    </label>
+    <label class="center">
+      Toggle rainbow theme
+      <input type="checkbox" id="check2" onclick="return logoRainbow();" disabled>
+    </label>
     <img alt="DVD logo" id="logo" src="/images/dvd-logo/norm.png" style="position: fixed; z-index: -1;">
     <script>
     function logoTheme() {  
@@ -95,6 +100,7 @@
       elem.style.top = (oldY + vY) + "px";
       setTimeout(move, 1000 / 60);
     }
+    document.querySelectorAll("[disabled]").forEach(e=>e.disabled=false);
     move();
     </script>
     <script src="/scripts/script.js"></script>

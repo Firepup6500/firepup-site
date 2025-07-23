@@ -3,6 +3,8 @@ function dLS(url) {
     script.src = url;
     document.head.appendChild(script);
 }
-dLS("/scripts/pgen.js")
+dLS("https://cdn.jsdelivr.net/npm/eruda@2.11.3/eruda.min.js")
 dLS("/scripts/footer.js")
-console.log("PwdGen scripts loaded")
+dLS("/scripts/pgen.js")
+dLS("/scripts/eruda_loader.js")
+console.info("PwdGen scripts loaded")

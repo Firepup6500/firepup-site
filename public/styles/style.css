@@ -181,6 +181,10 @@ button:active {
     text-align: center;
 }
 
+label input {
+    display: inline;
+}
+
 .left {
     text-align: left;
 }
