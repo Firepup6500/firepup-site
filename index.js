@@ -215,6 +215,14 @@ app.get("/dynmap", function(req, res) {
   return res.redirect("/bluemap/")
   next();
 });
+app.get("/about-me", function(req, res) {
+  return res.redirect("/me")
+  next();
+});
+app.get("/about-us", function(req, res) {
+  return res.redirect("/us")
+  next();
+});
 app.get(/\.html$/, function(req, res) {
   const strippedUrl = req.url.slice(0, -5);
   return res.redirect(strippedUrl);

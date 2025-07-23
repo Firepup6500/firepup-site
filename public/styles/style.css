@@ -18,6 +18,11 @@
     --fp-button: #222;
     --fp-button-dim: #111;
     --fp-white: #FFF;
+    --yellow: #FF0;
+    --cyan: #0FF;
+    --pink: #F0F;
+    --gray: #999;
+    --red: #F00;
 }
 
 @font-face {
@@ -181,7 +186,80 @@ button:active {
     text-align: center;
 }
 
+.card {
+    display: flex;
+    gap: 2px;
+    padding: 2px;
+    flex-direction: row;
+    border: 1px solid var(--fp-primary);
+    width: 518px;
+    word-wrap: break-word;
+}
+
+.card-text {
+    line-height:1.5em;
+    border: 1px solid var(--fp-primary);
+    width: 256px;
+    word-wrap: break-word;
+    text-align: left;
+}
+
+.card-img {
+    border: 1px solid var(--fp-primary);
+    width: 256px;
+    aspect-ratio: 1 / 1;
+    height: 256px;
+}
+
+.card-line {
+    margin: 2px;
+}
+
+.card-sep {
+    margin: 8px 0px;
+    background-color:red;
+}
+
+.fixed-half-width {
+    min-width: 256px;
+    max-width: 256px;
+    word-wrap: break-word;
+}
+
+.fixed-full-width {
+    min-width: 512px;
+    max-width: 512px;
+    word-wrap: break-word;
+}
+
+.real-half-width {
+    min-width: 50vw;
+    max-width: 50vw;
+    word-wrap: break-word;
+}
+
+.real-full-width {
+    min-width: 100vw;
+    max-width: 100vw;
+    word-wrap: break-word;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    background-color: var(--fp-primary);
+    border: none;
+}
+
+.outline {
+    border: 1px solid var(--fp-primary);
+}
+
 label input {
+    display: inline;
+}
+
+.inline {
     display: inline;
 }
 
@@ -237,5 +315,26 @@ code {
 
 .eruda-search-highlight-block .eruda-keyword {
     background: #ffe !important;
-    color:#550 !important;
+    color: #550 !important;
 }
+
+.yellow {
+    color: var(--yellow);
+}
+
+.cyan {
+    color: var(--cyan);
+}
+
+.pink {
+    color: var(--pink);
+}
+
+.gray {
+    color: var(--gray);
+}
+
+.red {
+    color: var(--red);
+}
+
