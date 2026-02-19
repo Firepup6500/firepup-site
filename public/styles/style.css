@@ -23,6 +23,7 @@
     --pink: #F0F;
     --gray: #999;
     --red: #F00;
+    --green: #0F0;
 }
 
 @font-face {
@@ -204,6 +205,14 @@ button:active {
     text-align: left;
 }
 
+.card-notice {
+    line-height:1.5em;
+    padding: 2px;
+    border: 1px solid var(--fp-primary);
+    word-wrap: break-word;
+    text-align: left;
+}
+
 .card-img {
     border: 1px solid var(--fp-primary);
     width: 256px;
@@ -218,6 +227,42 @@ button:active {
 .card-sep {
     margin: 8px 0px;
     background-color:red;
+}
+
+.card-name {
+    color: var(--cyan);
+}
+
+.card-pronouns {
+    color: var(--pink);
+}
+
+.card-type {
+    color: var(--cyan);
+}
+
+.card-gender {
+    color: var(--yellow);
+}
+
+.card-attraction {
+    color: var(--pink);
+}
+
+.card-credit {
+    color: var(--cyan);
+}
+
+.card-true {
+    color: var(--pink);
+}
+
+.card-false {
+    color: var(--red);
+}
+
+.card-unknown {
+    color: var(--yellow);
 }
 
 .fixed-half-width {
@@ -272,7 +317,7 @@ label input {
 }
 
 .rainbow {
-    background: linear-gradient(to right, #F00 0%, #E0F 10%, #0BF 30%, #0F1 50%, #F00 90%);
+    background: linear-gradient(to right, var(--red) 0%, var(--pink) 10%, var(--cyan) 30%, var(--green) 50%, var(--red) 90%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
