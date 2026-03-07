@@ -1,0 +1,106 @@
+@font-face {
+  font-family: 'Source Code Pro';
+  src: url('/fonts/SourceCodePro.ttf');
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  background-color: #000000;
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  color: #00FF00;
+}
+
+.warning {
+  color: #FF0000;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content {
+  flex: 1;
+}
+
+.block {
+  width: 100%;
+}
+
+footer {
+  margin-top: auto;
+  text-align: center;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+a, button, .rainbow, .force-color, span, label {
+    font-family: 'Source Code Pro', monospace !important;
+}
+
+a:has(button) {
+box-shadow: none !important;
+transform: none !important;
+}
+
+#replit-badge {
+  box-shadow: none;
+  transform: none;
+  outline: none;
+  background: #000000;
+}
+
+.center {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.left {
+  text-align: left;
+}
+
+.right {
+  text-align: right;
+}
+
+/*
+.rainbow {
+  background: linear-gradient(90.02deg, #ff0000 0.02%, #e100ff 27.09%, #00b3ff 51.04%, #00ff1e 76.56%, #ff0000 99.99%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+*/
+
+.rainbow {
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  background-image: linear-gradient(to right, #ff0000 0%, #e100ff 10%, #00b3ff 30%, #00ff1e 50%, #ff0000 90%);
+}
+
+.color {
+  color: #00FF00;
+}
+
+.force-color {
+  background: #00ff00;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
